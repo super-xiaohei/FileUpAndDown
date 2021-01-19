@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+        <!--  虽然插件中配置了<overwrite>true</overwrite>,但是只对java 文件有效,对mapper文件无效.特定使用 UnmergeableXmlMappersPlugin 才可以覆盖xml文件 -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+        <!--关闭注释的生成-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--覆盖生成XML文件-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/emps"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 实体类-->
+        <javaModelGenerator targetPackage="net.suncaper.fileprocess.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--Mapper 映射文件-->
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--Mapper 到接口 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="net.suncaper.fileprocess.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--  对应的表生成对应的 实体类 -->
+        <!--<table tableName="wcss_whitelist_setting" domainObjectName="User"/>-->
+        <table tableName="file" domainObjectName="FileEntity"/>
+        <!--<table tableName="wcss_whitelist_setting" domainObjectName="User">
+            <columnOverride column="application_start_date" javaType="java.time.LocalTime"/>
+            <columnOverride column="application_end_date" javaType="java.time.LocalTime"/>
+            <columnOverride column="register_start_date" javaType="java.time.LocalTime"/>
+            <columnOverride column="register_end_date" javaType="java.time.LocalTime"/>
+        </table>-->
+        <!--<table tableName="wcss_batch_setting" domainObjectName="Batch">
+            <property name="rootClass" value="net.suncaper.springboothanyi.entity.extend.BatchExtend"/>
+            <property name="rootInterface" value="net.suncaper.springboothanyi.mapper.extend.BatchMapperExtend"/>
+            <columnOverride column="application_start_date" javaType="java.time.LocalDate"/>
+            <columnOverride column="application_end_date" javaType="java.time.LocalDate"/>
+            <columnOverride column="register_start_date" javaType="java.time.LocalDate"/>
+            <columnOverride column="register_end_date" javaType="java.time.LocalDate"/>
+        </table>-->
+        <!--<table tableName="wcss_batch_setting" domainObjectName="Batch"/>-->
+        <!--<table tableName="dictionary" domainObjectName="Dictionary">
+            <property name="rootInterface" value="net.suncaper.springboothanyi.mapper.extend.DictionaryMapperExtend"/>
+        </table>-->
+        <!--<table tableName="wcss_product" domainObjectName="Product"/>-->
+        <!-- <table tableName="wcss_product_image" domainObjectName="Image"/>-->
+        <!--<table tableName="wcss_sku" domainObjectName="Sku"/>-->
+        <!--<table tableName="wcss_batch_garde" domainObjectName="BatchGrade"/>-->
+        <!--<table tableName="v_knrd" domainObjectName="Knrd"/>-->
+        <!-- <table tableName="v_student_data" domainObjectName="Student"/>-->
+        <!--<table tableName="wcss_role_flow_setting" domainObjectName="FlowSetting"/>
+        <table tableName="wcss_application" domainObjectName="Application"/>
+        <table tableName="wcss_audit_history" domainObjectName="AuditHistory"/>-->
+
+        <!-- <table tableName="v_user_manage" domainObjectName="Teacher"/>-->
+    </context>
+</generatorConfiguration>
